@@ -1,0 +1,8 @@
+﻿{
+    javascript:[
+        "/app_plugins/tooorangey.ContentReview/contentreview.controller.js"
+    ],
+	css: [
+	"/app_plugins/tooorangey.ContentReview/contentreview.css"
+	]
+}

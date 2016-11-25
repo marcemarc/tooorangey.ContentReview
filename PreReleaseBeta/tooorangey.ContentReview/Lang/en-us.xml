@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="contentReviewDashboard">
+    <key alias="pageName">Page Name</key>
+    <key alias="reviewDate">Review Date</key>
+    <key alias="daysRemaining">Days until Review</key>
+    <key alias="contentStatus">Review Status</key>
+    <key alias="noContent">No Content to review in the next</key>
+    <key alias="days">days</key>
+    <key alias="noReviewDocuments">This report lists all the Umbraco pages in the site with a specified 'ReviewDate' property, ordered by this date, with the 'next to review' first in the list.</key>
+  </area>
+</language>

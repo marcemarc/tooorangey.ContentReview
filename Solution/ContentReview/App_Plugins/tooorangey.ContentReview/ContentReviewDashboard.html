@@ -1,0 +1,47 @@
+﻿<div class="redirecturlsearch" ng-controller="tooorangey.ContentReviewController as vm">
+
+    <umb-load-indicator ng-if="vm.dashboard.loading"></umb-load-indicator>  
+    <div class="umb-table" ng-if="vm.results.HasResults && vm.dashboard.loading === false">
+        <div class="umb-table-head">
+            <div class="umb-table-row">
+                <div class="umb-table-cell not-fixed flx-s1 flx-g1 flx-b4"><localize key="contentReviewDashboard_pageName">Page Name</localize></div>
+                <div class="umb-table-cell flx-s1 flx-g1 flx-b6"><localize key="contentReviewDashboard_reviewDate">Review Date</localize></div>
+                <div class="umb-table-cell flx-s1 flx-g1 flx-b6"><localize key="contentReviewDashboard_daysRemaining">Days Remaining</localize></div>
+                <div class="umb-table-cell flx-s1 flx-g1 flx-b6"><localize key="contentReviewDashboard_contentStatus">Content Status</localize></div>
+              </div>
+        </div>
+        <div class="umb-table-body">
+            <div class="umb-table-row -solid" ng-repeat="contentItem in vm.results.Results">
+
+                <div class="umb-table-cell not-fixed flx-s1 flx-g1 flx-b4">
+                    <a class="umb-table-body__link" href="/umbraco/#/content/content/edit/{{contentItem.Id}}" target="_blank" title="">{{contentItem.Name}}</a>
+                </div>
+   
+                    <div class="umb-table-cell flx-s1 flx-g1 flx-b6 items-center">
+                        {{contentItem.ReviewDate | date:'dd/MM/yyyy'}}
+                    </div>
+                <div class="umb-table-cell flx-s1 flx-g1 flx-b6 items-center">
+                    {{contentItem.DaysUntilReview}}
+                </div>
+                <div class="umb-table-cell flx-s1 flx-g1 flx-b6 items-center"  ng-class="vm.getColourStatusCssClass(contentItem.Status)">
+                          {{vm.getColourFromStatus(contentItem.Status)}}
+                    </div>
+
+
+                </div>
+        </div>
+    </div>
+    <umb-empty-state ng-if="!vm.results.HasResults && !vm.dashboard.loading" position="center">
+        <div><localize key="contentReviewDashboard_noContent">No Content to review in the next </localize> {{vm.dashboard.noOfDaysAhead}} <localize key="contentReviewDashboard_days"> days</localize></div>
+        <small class="faded"><localize key="contentReviewDashboard_noReviewDocuments">This report lists all the Umbraco pages in the site with a specified 'ReviewDate' property, ordered by this date, with the 'next to review' first in the list.</localize></small>
+    </umb-empty-state>
+    <div class="flex justify-center items-center">
+        <umb-pagination ng-if="vm.pagination.totalPages > 1 && !vm.dashboard.loading"
+                        page-number="vm.pagination.pageNumber"
+                        total-pages="vm.pagination.totalPages"
+                        on-next="vm.goToPage"
+                        on-prev="vm.goToPage"
+                        on-go-to-page="vm.goToPage">
+        </umb-pagination>
+    </div>
+</div>
